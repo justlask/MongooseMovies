@@ -1,13 +1,19 @@
-<h1>Title: {{movie.title}}</h1>
+<div class="movie">
+  <h1>{{movie.title}}</h1>
 <img src="{{movie.image}}">
 
 <h3>Genre: {{movie.genre}}</h3>
 
-<p>Plot: {{movie.plot}}</p> 
+<p><span class="boldit">Plot: </span>{{movie.plot}}</p> 
 
-  Actors:
+  <ul>
+    <h3>Actors:</h3>
   {{#each movie.actors}}
-  <a href="/celebrities/single/{{id}}""><li>{{name}}</li></a>
+
+  <a href="/celebrities/single/{{id}}"><li>{{name}}</li></a>
   {{/each}}
+
+  </ul>
+</div>
 
 

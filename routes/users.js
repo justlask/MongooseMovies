@@ -3,7 +3,7 @@ const router      = express.Router();
 const User        = require('../models/User')
 
 const bcrypt     = require("bcryptjs");
-
+const passport = require("passport");
 
 
 
@@ -37,40 +37,17 @@ router.get('/login', (req, res, next) => {
   res.render("users/login")
 })
 
-router.post('/login', (req, res, next) => {
-  let username = req.body.username
-  let password = req.body.password
-
-
-
-  User.findOne({ "username": username })
-  .then(user => {
-      if (!user) {
-
-        req.flash('error', `sorry, that's not the one.`)
-        res.redirect('/user/login')
-      }
-      if (bcrypt.compareSync(password, user.password)) {
-        // Save the login in the session!
-        req.session.currentUser = user;
-        res.redirect("/user/secret");
-      }
-  }).catch(error => {
-    next(error);
-  })
-})
-
+router.post('/login', passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "/login",
+  failureFlash: true,
+  passReqToCallback: true
+}));
 
 router.post('/logout', (req, res, next) => {
-  req.session.destroy(err => {
-    res.redirect('/')
-  })
+  req.logout();
+  res.redirect('/')
 });
-
-
-
-
-
 
 
 router.get('/secret', (req,res,next) => {
@@ -81,9 +58,6 @@ router.get('/secret', (req,res,next) => {
     res.redirect('/')
   }
 })
-
-
-
 
 
 module.exports = router;

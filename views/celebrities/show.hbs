@@ -1,7 +1,17 @@
-<h1>Name: {{celeb.name}}</h1>
-<img src={{celeb.image}} alt="">
-<h2>Occupation: {{celeb.occupation}}</h2>
-<p>Catch Phrase: {{celeb.catchPhrase}}</p>
+
+
+<div class="starsingle">
+  <img src={{celeb.image}} alt="">
+  <div>
+    <h1>{{celeb.name}}</h1>
+<h2>{{celeb.occupation}}</h2>
+<p>{{celeb.catchPhrase}}</p>
+
+<ul>
+  <h3>Movies:</h3>
 {{#each celeb.movies}}
-  <a href="/movies/details/{{id}}"><p>{{title}}</p></a>
+  <a href="/movies/details/{{id}}"><li>{{title}}</li></a>
 {{/each}}
+</ul></div>
+
+</div>

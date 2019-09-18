@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Poppins';
   background-color: #f7f7f7; }
 
 a {
@@ -49,6 +50,45 @@ footer {
   background-color: #00B7FF;
   color: black;
   border-radius: 6px; }
+
+.stars,
+.movies {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around; }
+
+.star,
+.movie {
+  min-width: 300px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 5px 5vw; }
+
+.starsingle {
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 5px 5vw; }
+
+.star img,
+.movie img,
+.starsingle img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.editbuttons {
+  display: flex;
+  justify-content: space-around; }
+
+.editbuttons button {
+  margin-right: 10px; }
+
+.boldit {
+  font-size: 22px; }
 
 @media only screen and (max-width: 900px) {
   header {

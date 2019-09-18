@@ -10,6 +10,7 @@ var celebritySchema = new Schema({
   catchPhrase:   String,
   movies:  [ { type : Schema.Types.ObjectId, ref: 'Movie' } ],
   image: String,
+  creator: String,
 });
 
 

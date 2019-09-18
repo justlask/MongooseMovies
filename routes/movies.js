@@ -6,6 +6,16 @@ const Celebrities = require('../models/Celebrity')
 router.get('/', (req, res, next) => {
 
   Movie.find().then(data => {
+
+
+    if (req.user) {
+      data.forEach((movie)=>{
+        if( req.user._id.equals(movie.creator)){
+          movie.mine = true;
+        } 
+      })
+    }
+
     res.render('movies/index', {movies: data})
   }).catch(err => next(err))
 })
@@ -32,7 +42,8 @@ router.post("/create", (req,res,next) => {
     genre: req.body.genre,
     plot: req.body.plot,
     image: req.body.image,
-    actors: req.body.actors
+    actors: req.body.actors,
+    creator: req.user.id
   }
 
   Movie.create(movie).then(data => {

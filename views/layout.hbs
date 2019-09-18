@@ -11,24 +11,21 @@
   <header>
     <a href="/"><h1>Mongoose Movies</h1></a>
     <nav>
+      {{#if user}}
       <a href="/celebrities">All Celebs</a>
-      <a href="/celebrities/new">Add Celeb</a>
       <a href="/movies">All Movies</a>
+      <a href="/celebrities/new">Add Celeb</a>
       <a href="/movies/new">Add Movie</a>
+      <form action="/user/logout" method="POST">
+        <button>Logout</button>
+      </form>
 
-    {{#if theUser}}
-        <form action="/user/logout" method="POST">
-          <button>Logout</button>
-        </form>
-    {{/if}}
-
-    {{#unless theUser}}
-        <a href="/user/signup">Signup</a>
-        <a href="/user/login">Login</a>
-
-    {{/unless}}
-
-
+      {{else}}
+      <a href="/celebrities">All Celebs</a>
+      <a href="/movies">All Movies</a>
+      <a href="/user/signup">Signup</a>|
+      <a href="/user/login">Login</a>
+      {{/if}}
     </nav>
   </header>
 

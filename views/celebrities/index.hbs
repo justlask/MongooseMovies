@@ -1,9 +1,19 @@
-<h1>All them celebs</h1>
+<h1>Stars</h1>
 
-{{#each celebs}}
-  <a href="celebrities/single/{{id}}"><h1>{{name}}</h1></a>
-  <form action="/celebrities/delete/{{id}}" method="POST">
-  <button>Delete</button>
-  </form>
-  <a href="/celebrities/edit/{{id}}">Update</a>
-{{/each}}
+<div class="stars">
+
+  {{#each celebs}}
+    <div class="star"> 
+    <a href="celebrities/single/{{id}}"><h1>{{name}}</h1></a>
+    <img src="{{image}}" alt="celeb image">
+
+    {{#if this.mine}}
+      <form action="/celebrities/delete/{{id}}" method="POST">
+      <button>Delete</button>
+      </form>
+      <a href="/celebrities/edit/{{id}}">Update</a>
+    {{/if}}
+    </div>
+    {{/each}}
+  
+</div>

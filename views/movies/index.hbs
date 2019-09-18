@@ -1,12 +1,27 @@
-<h1>Movies n stuff</h1>
+<h1>Movies</h1>
 
-{{#each movies}}
-  <div>
-  <a href="/movies/details/{{id}}"><h1>{{title}}</h1></a>
-  <form action="/update"></form>
-    <form action="/movies/delete/{{id}}" method="POST">
-  <button>Delete</button>
-  </form>
-  <a href="/movies/edit/{{id}}">Update</a>
-  </div>
-{{/each}}
+
+
+<div class="movies">
+
+  {{#each movies}}
+    <div class="movie">
+    <a href="/movies/details/{{id}}"><h1>{{title}}</h1></a>
+    <img src="{{image}}" alt="movie image">
+
+    {{#if this.mine}}
+        <div class="editbuttons">
+        <form action="/update"></form>
+          <form action="/movies/delete/{{id}}" method="POST">
+        <button>Delete</button>
+        </form>
+        <a href="/movies/edit/{{id}}">Update</a>
+        </div>
+
+    {{/if}}
+
+    </div>
+  {{/each}}
+
+
+</div>
