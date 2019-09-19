@@ -1,0 +1,18 @@
+<h1>ADMIN PAGE FOR ALL THINGS ADMIN!</h1>
+
+
+{{#each users}}
+  <h1>Name: {{username}}</h1>
+  <h2>Admin: {{isAdmin}}</h2>
+  <div class="button">
+    <form action="/admin/edit" method="POST">
+    <input type="hidden" name="id" value="{{id}}">
+      <button>Edit</button>
+    </form>
+    <form action="/admin/delete" method="POST">
+    <input type="hidden" name="id" value="{{id}}">
+      <button>Delete</button>
+    </form>
+  </div>
+
+{{/each}}

@@ -121,4 +121,6 @@ app.use('/movies', require('./routes/movies'));
 
 app.use('/user', require('./routes/users'))
 
+app.use('/admin', require('./routes/admin'))
+
 module.exports = app;

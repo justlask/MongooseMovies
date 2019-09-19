@@ -4,7 +4,9 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
   username: String,
   password: String,
+  email: String,
   image: String,
+  isAdmin: Boolean
   // friends: [ { type : Schema.Types.ObjectId, ref: 'Celebrity' } ]
 })
 

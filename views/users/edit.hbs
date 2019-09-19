@@ -1,0 +1,19 @@
+<h1>Let's edit this shit.</h1>
+
+
+
+<div class="edit">
+  <form action="/admin/edit/user" method="POST">
+    <input type="hidden" name="id" value={{id}}>
+    <div>
+          <label for="name">Name</label>
+    <input type="text" name="name" id="id" value="{{username}}" required>
+    </div>
+    <div>
+          <label for="admin">is an Admin:</label>
+    <input type="checkbox" name="admin" id="admin" value="true">
+    </div>
+
+    <button>Submit</button>
+  </form>
+</div>

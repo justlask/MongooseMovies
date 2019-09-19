@@ -87,8 +87,33 @@ footer {
 .editbuttons button {
   margin-right: 10px; }
 
+.button {
+  display: flex; }
+
+.button form {
+  margin: 0px 10px; }
+
 .boldit {
   font-size: 22px; }
+
+.edit {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.edit form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  justify-content: space-around;
+  align-items: center;
+  height: 200px; }
+
+.edit form button {
+  padding: 10px 15px;
+  background-color: #00B7FF;
+  color: black;
+  width: 100px; }
 
 @media only screen and (max-width: 900px) {
   header {

@@ -1,0 +1,30 @@
+<h1>LETS UPDATE YOUR SHIT!</h1>
+
+
+
+<form action="/user/update" method="POST">
+  <div>
+  <label for="name">Username:</label>
+  <input type="text" name="name" id="name" value="{{user.username}}" required>
+  </div>
+
+
+  <div>  
+  <label for="email">Email</label>
+  <input type="email" name="email" id="email" required value="{{user.email}}">
+  </div>
+
+  <div>
+ <label for="oldpass">Old Password</label>
+ <input type="password" name="oldpass" id="oldpass" placeholder="verify old password" required >
+  </div>
+
+  <div>
+  <label for="newpass">New Password</label>
+  <input type="password" name="newpass" id="newpass" placeholder="new password">
+  </div>
+
+
+
+  <button>Submit</button>
+</form>
