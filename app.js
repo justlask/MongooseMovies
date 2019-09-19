@@ -19,6 +19,8 @@ const flash      = require('connect-flash');
 const passport   = require('passport')
 const LocalStrategy     = require('passport-local').Strategy
 
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+
 const User              = require('./models/User')
 
 
@@ -99,6 +101,42 @@ passport.use(new LocalStrategy((username, password, next) => {
     return next(null, user);
   });
 }));
+
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GID,
+      clientSecret: process.env.GSECRET,
+      callbackURL: "/auth/google/callback"
+    },
+    (accessToken, refreshToken, profile, done) => {
+      // to see the structure of the data in received response:
+      console.log("Google account details:", profile);
+
+      User.findOne({ googleID: profile.id })
+        .then(user => {
+          if (user) {
+            done(null, user);
+            return;
+          }
+
+          User.create({ 
+            googleID: profile.id,
+            username: profile._json.name,
+            email: profile._json.email,
+            isAdmin: false
+           })
+            .then(newUser => {
+              done(null, newUser);
+            })
+            .catch(err => done(err)); // closes User.create()
+        })
+        .catch(err => done(err)); // closes User.findOne()
+    }
+  )
+);
+
 
 app.use(passport.initialize());
 app.use(passport.session());

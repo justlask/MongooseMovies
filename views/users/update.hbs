@@ -14,15 +14,18 @@
   <input type="email" name="email" id="email" required value="{{user.email}}">
   </div>
 
+  {{#if user.password}}
   <div>
  <label for="oldpass">Old Password</label>
- <input type="password" name="oldpass" id="oldpass" placeholder="verify old password" required >
+ <input type="password" name="oldpass" id="oldpass" placeholder="verify old password">
   </div>
 
   <div>
   <label for="newpass">New Password</label>
   <input type="password" name="newpass" id="newpass" placeholder="new password">
   </div>
+
+  {{/if}}
 
 
 

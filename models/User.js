@@ -6,7 +6,8 @@ const userSchema = new Schema({
   password: String,
   email: String,
   image: String,
-  isAdmin: Boolean
+  isAdmin: Boolean,
+  googleID: String,
   // friends: [ { type : Schema.Types.ObjectId, ref: 'Celebrity' } ]
 })
 

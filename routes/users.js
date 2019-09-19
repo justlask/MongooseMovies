@@ -45,8 +45,6 @@ router.post('/login', passport.authenticate("local", {
 }));
 
 
-
-
 router.use((req,res,next) => {
   if (!req.user) {
     res.redirect("/user/login");
@@ -96,35 +94,47 @@ router.get("/update", (req,res,next) => {
 
 router.post("/update", (req,res,next) => {
 
-  console.log(req.body)
   let id = req.user.id
   let name = req.body.name;
   let email = req.body.email;
   let oldpass = req.body.oldpass;
   let newpass = req.body.newpass;
 
-  const saltRounds = 10;
 
-  const salt  = bcrypt.genSaltSync(saltRounds);
-  const hashPass = bcrypt.hashSync(newpass, salt);
-
-
-  if (!bcrypt.compareSync(oldpass, req.user.password)) {
-    req.flash('error', `your old password is incorrect`)
-    res.redirect('/user/profile')
-  }
-
-  if (bcrypt.compareSync(oldpass, req.user.password)) {
+  if (req.user.googleID) {
     User.findByIdAndUpdate(id, {
       username: name,
       email: email,
-      password: hashPass
-
     }).then(data => {
       req.flash('success', "you've changed your info!")
       res.redirect('/user/profile')
   
     }).catch(err => next(err))
+  }
+
+  else {
+    const saltRounds = 10;
+
+    const salt  = bcrypt.genSaltSync(saltRounds);
+    const hashPass = bcrypt.hashSync(newpass, salt);
+  
+  
+    if (!bcrypt.compareSync(oldpass, req.user.password)) {
+      req.flash('error', `your old password is incorrect`)
+      res.redirect('/user/profile')
+    }
+  
+    if (bcrypt.compareSync(oldpass, req.user.password)) {
+      User.findByIdAndUpdate(id, {
+        username: name,
+        email: email,
+        password: hashPass
+  
+      }).then(data => {
+        req.flash('success', "you've changed your info!")
+        res.redirect('/user/profile')
+      }).catch(err => next(err))
+    }
   }
 })
 
